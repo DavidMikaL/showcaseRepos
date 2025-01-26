@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Cells\RootCell.cs" />
     <Compile Include="Assets\Scripts\Cells\CommonCell.cs" />
     <Compile Include="Assets\Scripts\Cells\HornCell.cs" />
+    <Compile Include="Assets\Scripts\Cells\CellType.cs" />
     <Compile Include="Assets\Scripts\OffspringCreation.cs" />
     <Compile Include="Assets\Scripts\Cells\Cell.cs" />
   </ItemGroup>

@@ -14,6 +14,7 @@ public class Cell
         Parent
     */
     private Cell parent;
+    private CellType cellType;
     private double hardness {get; set;}
     private double xSize {get; set;}
     private double ySize {get; set;}
@@ -26,7 +27,7 @@ public class Cell
     private double xPosition {get; set;}
     private double yPosition {get; set;}
 
-    public Cell(double hardness, double xSize, double ySize, double maxHealth, Cell parent)
+    public Cell(double hardness, double xSize, double ySize, double maxHealth, CellType cellType, Cell parent)
     {
         this.hardness = hardness;
         this.xSize = xSize;
@@ -36,8 +37,9 @@ public class Cell
         this.parent = parent;
     }
 
-    public Cell(bool random, double xSize, double ySize, Cell parent)//random constructor
+    public Cell(bool random, double xSize, double ySize, CellType cellType, Cell parent)//random constructor
     {
+        
         if(random)
         {   
             this.hardness = UnityEngine.Random.Range(1,100);
@@ -45,6 +47,7 @@ public class Cell
             this.ySize = ySize;
             this.maxHealth = UnityEngine.Random.Range(1,100);
             health = maxHealth;
+            this.cellType = cellType;
             this. parent = parent;
         }
     }
