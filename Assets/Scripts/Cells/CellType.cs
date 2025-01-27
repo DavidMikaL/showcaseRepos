@@ -1,9 +1,9 @@
 public enum CellType
 {
-    Common,
-    Core,
-    ExtremityRoot,
-    Eye,
-    Horn,
-    Mouth
+    Common, //black
+    Core, //blue
+    ExtremityRoot, //magenta
+    Eye, //green
+    Horn, //gray
+    Mouth //red
 }

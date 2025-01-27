@@ -4,7 +4,6 @@ public class RootCell : Cell
 {
     private Cell[,] cells;//!!! remove public
     public Cell[,] Cells {get{return cells;} set{cells = value;}}
-    double[] angles;
 
     public RootCell(double hardness, double xSize, double ySize, double maxHealth, CellType cellType, Cell parent) : base(hardness, xSize, ySize, maxHealth, cellType, parent)
     {

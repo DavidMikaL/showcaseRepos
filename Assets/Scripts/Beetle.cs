@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic; // Import for spot list
 using UnityEngine;
 
 
@@ -15,43 +17,47 @@ public class Beetle : MonoBehaviour
             {
                 if(cells[i,j] != null)
                 {
-                    logString += j; 
+                    logString += " "; 
+                    logString += cells[i,j].CellType; 
+                    logString += " "; 
                 }
                 else{
-                    logString += "_";
+                    logString += " _ ";
                 }
             }
             Debug.Log(logString);
         }
     }
     
+
+    private Sprite mySprite;
+    private SpriteRenderer sr; // do I have to insert this?
+
+    void Awake()
+    {
+        sr = gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
+        //sr.color = new Color(1f, 1f, 1f, 1f);
+
+        transform.position = new Vector3(-1f, -1f, 0f);
+    }
+
     void Start()
     {
-        //info = RandomizedCreation.createRandomBeetleInfo();
         BeetleInfo beetleInfo = RandomizedCreation.createRandomBeetleInfo();
-        //Cell[,] cells = beetleInfo.MainCoreCell.cells;
-        //Debug.l
-        //writeCells(cells);
-
-        // Cell[,] cells = new Cell[10,10];
-        // for(int i = 0; i < 10; i++)
+        // ICollection<Spot> spots = SpriteWork.createSpotBug(beetleInfo);
+        // foreach(Spot s in spots)
         // {
-        //     for(int j = 0; j < 10; j++)
-        //     {
-        //         if(Random.Range(0,99) < 95)
-        //         {
-        //             cells[i,j] = new MeatCell(true,5);
-        //         }
-                
-        //     }
+        //     s.printSpot();
         // }
+        mySprite = SpriteWork.createBeetleSprite(beetleInfo);
+    }
 
-        // writeCells(cells);
-        // for(int i = 0; i < 10; i++)
-        // {
-        //     Debug.Log(Random.Range(0,99));
-        // }
-        
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 100, 30), "Add sprite"))
+        {
+            sr.sprite = mySprite;
+        }
     }
 
     // Update is called once per frame

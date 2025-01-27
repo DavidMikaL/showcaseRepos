@@ -37,19 +37,22 @@ public static class RandomizedCreation
                 }else {break;}
             }
         }
-
-        int topheight = Random.Range(1,thickness - 1);
-        for(int i = 0; i < topheight; i++)
+        if(thickness >= 1)
         {
-            cells[2,i] = randomizedCell(cellSize, parent);
-        }
-        if(Random.Range(0,999) == 5)//1 in 1000
-        {
-            cells[2,topheight] = createRandomCoreCell(parent);
-        } else if(Random.Range(0,99) < 5){
-            cells[2,topheight] = createRandomExtremityRootCell(cellSize, parent);
-        } else {
-            cells[2,topheight] = randomizedCell(cellSize, parent);
+            int topheight = Random.Range(0,thickness - 1);
+            for(int i = 0; i < topheight; i++)
+            {
+                cells[2,i] = randomizedCell(cellSize, parent);
+            }
+        
+            if(Random.Range(0,999) == 5)//1 in 1000
+            {
+                cells[2,topheight] = createRandomCoreCell(parent);
+            } else if(Random.Range(0,99) < 75){
+                cells[2,topheight] = createRandomExtremityRootCell(cellSize, parent);// additional chance to elongate extremy
+            } else {
+                cells[2,topheight] = randomizedCell(cellSize, parent);
+            }
         }
 
         extremityRootCell.Cells =  (Cell[,])cells.Clone();
@@ -58,11 +61,11 @@ public static class RandomizedCreation
 
     public static CoreCell createRandomCoreCell(Cell parent)
     {
-        int thickness = UnityEngine.Random.Range(1,4);
-        double cellSize = UnityEngine.Random.Range(1,10); //should also work out with very small mainCoreCells
-        int mainXSize = Random.Range(1,10);
-        int mainYSize = Random.Range(1,10);
-        int cellColumnAmount = 2*mainXSize + 2*mainYSize - ((mainXSize+mainYSize) / 2) + Random.Range(0, mainXSize+mainYSize); // defines density around Cylindrical CoreCell
+        int thickness = UnityEngine.Random.Range(2,5);
+        double cellSize = UnityEngine.Random.Range(5,10);
+        int mainXSize = Random.Range(20,100);
+        int mainYSize = Random.Range(20,100);
+        int cellColumnAmount = (mainXSize + mainYSize)/4 - ((mainXSize+mainYSize) / 8) + Random.Range(0, mainXSize+mainYSize/8); // defines density around elyptical CoreCell
 
         CoreCell CoreCell =  new CoreCell(true, mainXSize, mainYSize, parent);
 
@@ -73,8 +76,8 @@ public static class RandomizedCreation
             int j = 0;
             while(j < thickness && Random.Range(0,99) < 95)
             {
-                j++;
                 cells[i,j] = randomizedCell(cellSize, parent);
+                j++;
             }
         }
 
@@ -85,19 +88,18 @@ public static class RandomizedCreation
 
     public static Cell randomizedCell(double cellSize, Cell parent)// Cant return Core Cell
     {
-        int randomSeed = Random.Range(0,999);
+        int randomSeed = Random.Range(0,99);
 
-        // if(randomSeed > 7){//Meat
-        //     return new CommonCell(true, cellSize, parent);}
+        if(randomSeed > 11){//Meat
+            return new CommonCell(true, cellSize, parent);}
         if(randomSeed < 5){//Horn
             return new HornCell(true, cellSize, parent);
-        }if (randomSeed == 5){//Extremity
+        }if (randomSeed >= 5 && randomSeed < 10){//Extremity
             return createRandomExtremityRootCell(cellSize, parent);
-        }if(randomSeed == 6){//Eye
+        }if(randomSeed == 10){//Eye
             return new EyeCell(true, cellSize, parent);
-        }if(randomSeed == 7){//Mouth
+        }else {
             return new MouthCell(true, cellSize, parent);
         }
-        else {return new CommonCell(true, cellSize, parent);}
     }
 }

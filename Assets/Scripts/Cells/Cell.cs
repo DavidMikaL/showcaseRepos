@@ -15,9 +15,12 @@ public class Cell
     */
     private Cell parent;
     private CellType cellType;
+    public CellType CellType {get{return cellType;} private set{cellType = value;}}
     private double hardness {get; set;}
     private double xSize {get; set;}
     private double ySize {get; set;}
+    public double XSize {get{return xSize;} set{xSize = value;}}
+    public double YSize {get{return ySize;} set{ySize = value;}}
     private double maxHealth {get; set;}
     /** Status:
         health
