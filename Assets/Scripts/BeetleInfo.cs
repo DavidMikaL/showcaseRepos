@@ -50,6 +50,24 @@ public class BeetleInfo
         this.mainCoreCell = mainCoreCell;
     }
 
+    public BeetleInfo evolvedBeetleInfo()//cant simply clone and evolve cause pointers would stay the same
+    {
+        CoreCell newmainCore = mainCoreCell.evolvedCore(null);
+        BeetleInfo newBI = new BeetleInfo(randomize(reprodAmount,1), randomize(reprodAmount,5), randomize(regenSpeed, 10), generation + 1, newmainCore);
+        return newBI;
+    }
+
+    public static double randomize(double input, int range)//adjust to normal distribution
+    {
+        double ret =  input - range/2 + Random.Range(0,range);
+        return ret < 1 ? 1 : ret;
+    }
+
+    public static int randomizeInt(double input, int range)//adjust to normal distribution
+    {
+        int ret = (int)input - range/2 + Random.Range(0,range);
+        return ret < 1 ? 1 : ret;
+    }
 
 
     // create hitbox structure

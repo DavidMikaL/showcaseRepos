@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OffspringGeneration
+public class OffspringCreation
 {
     
 }

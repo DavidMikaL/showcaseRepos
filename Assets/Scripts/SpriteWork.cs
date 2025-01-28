@@ -118,6 +118,7 @@ public class SpriteWork
 
     public static ICollection<Spot> createSpotExtremity(ExtremityRootCell currentCell, int currentX, int currentY, float currentAngle)
     {
+        Debug.Log("Also does");
         ICollection<Spot> spots = new List<Spot>
         {
             new Spot(currentX, currentY, Color.magenta)

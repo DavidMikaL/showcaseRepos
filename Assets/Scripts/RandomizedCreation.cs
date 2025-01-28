@@ -21,8 +21,10 @@ public static class RandomizedCreation
         return new BeetleInfo(Random.Range(0,2), Random.Range(1,10), Random.Range(0,10), 0, createRandomCoreCell(null));
     }
 
-    public static ExtremityRootCell createRandomExtremityRootCell(double cellSize, Cell parent)
+    public static ExtremityRootCell createRandomExtremityRootCell(double cellSize, RootCell parent)
     {
+        Debug.Log("This happens");
+
         int thickness = UnityEngine.Random.Range(1,4);
         Cell[,] cells = new Cell[3,thickness];
         ExtremityRootCell extremityRootCell =  new ExtremityRootCell(true, cellSize, cellSize, parent);
@@ -59,12 +61,12 @@ public static class RandomizedCreation
         return extremityRootCell;
     }
 
-    public static CoreCell createRandomCoreCell(Cell parent)
+    public static CoreCell createRandomCoreCell(RootCell parent)
     {
-        int thickness = UnityEngine.Random.Range(2,5);
-        double cellSize = UnityEngine.Random.Range(5,10);
-        int mainXSize = Random.Range(20,100);
-        int mainYSize = Random.Range(20,100);
+        int thickness = Random.Range(2,5);
+        double cellSize = Random.Range(5,10);
+        int mainXSize = Random.Range(20,100);//remove
+        int mainYSize = Random.Range(20,100);//remove
         int cellColumnAmount = (mainXSize + mainYSize)/4 - ((mainXSize+mainYSize) / 8) + Random.Range(0, mainXSize+mainYSize/8); // defines density around elyptical CoreCell
 
         CoreCell CoreCell =  new CoreCell(true, mainXSize, mainYSize, parent);
@@ -86,7 +88,7 @@ public static class RandomizedCreation
         return CoreCell;
     }
 
-    public static Cell randomizedCell(double cellSize, Cell parent)// Cant return Core Cell
+    public static Cell randomizedCell(double cellSize, RootCell parent)// Cant return Core Cell
     {
         int randomSeed = Random.Range(0,99);
 
