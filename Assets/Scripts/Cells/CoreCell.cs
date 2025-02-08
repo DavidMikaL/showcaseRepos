@@ -11,12 +11,18 @@ public class CoreCell : RootCell
         
     }
 
-    //random constructor (nothing to randomize)
+    /**
+        random/null constructor (nothing to randomize)
+    */
     public CoreCell(bool random, double xSize, double ySize, RootCell parent) : base(random, xSize, ySize, CellType.Core, parent)
     {
     }
 
 
+    /**
+        Return a CoreCell 
+        slightly different from the one executing the method 
+    */    
     public CoreCell evolvedCore(RootCell parent)
     {
         CoreCell coreCell = new CoreCell(BeetleInfo.randomize(this.Hardness, 5),
@@ -26,7 +32,7 @@ public class CoreCell : RootCell
                                         parent);
         
 
-        int thickness = BeetleInfo.randomizeInt(Cells.GetLength(1), 1);
+        int thickness = Cells.GetLength(1);//BeetleInfo.randomizeInt(Cells.GetLength(1) + 1, 1);
         
         double cellSize; 
         if(Cells[0,0] != null)

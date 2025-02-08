@@ -14,10 +14,12 @@ public class EyeCell : Cell
         this.visionAngle = visionAngle;
     }
 
+    /**
+        random/null constructor 
+    */
     public EyeCell(bool random, double size, RootCell parent) : base(random, size, size, CellType.Eye, parent)
     {
         this.visionDistance = Random.Range(1,300);
         this.visionAngle = Random.Range(10,90);
     }
-    // Give information through to BeetleBase
 }

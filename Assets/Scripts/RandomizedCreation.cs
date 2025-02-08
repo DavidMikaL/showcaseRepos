@@ -16,14 +16,20 @@ public static class RandomizedCreation
     //     gameObject = gameObject.AddComponent<>()
     // }
 
+    /**
+        create RandomCoreCellRecursively
+    */
     public static BeetleInfo createRandomBeetleInfo()
     {
         return new BeetleInfo(Random.Range(0,2), Random.Range(1,10), Random.Range(0,10), 0, createRandomCoreCell(null));
     }
 
+    /**
+        recursively add in Randomly created Cells starting from ExtremityRootCell 
+    */
     public static ExtremityRootCell createRandomExtremityRootCell(double cellSize, RootCell parent)
     {
-        Debug.Log("This happens");
+        //Debug.Log("This happens");
 
         int thickness = UnityEngine.Random.Range(1,4);
         Cell[,] cells = new Cell[3,thickness];
@@ -61,6 +67,9 @@ public static class RandomizedCreation
         return extremityRootCell;
     }
 
+    /**
+        recursively add in Randomly created Cells starting from coreCell 
+    */
     public static CoreCell createRandomCoreCell(RootCell parent)
     {
         int thickness = Random.Range(2,5);
@@ -88,6 +97,9 @@ public static class RandomizedCreation
         return CoreCell;
     }
 
+    /**
+        return new random Cell of random Type
+    */
     public static Cell randomizedCell(double cellSize, RootCell parent)// Cant return Core Cell
     {
         int randomSeed = Random.Range(0,99);

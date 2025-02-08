@@ -8,6 +8,9 @@ public class MouthCell : Cell
     {
     }
 
+    /**
+        random/null constructor (nothing to randomize)
+    */
     public MouthCell(bool random, double size, RootCell parent) : base(random, size, size, CellType.Mouth, parent)
     {
     }

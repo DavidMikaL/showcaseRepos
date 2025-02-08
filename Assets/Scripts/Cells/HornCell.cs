@@ -6,6 +6,9 @@ public class HornCell : Cell
     {
     }
 
+    /**
+        random/null constructor (nothing to randomize)
+    */
     public HornCell(bool random, double size, RootCell parent) : base(random, size, size, CellType.Horn, parent)
     {
     }

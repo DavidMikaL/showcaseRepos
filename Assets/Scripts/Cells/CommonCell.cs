@@ -7,6 +7,9 @@ public class CommonCell : Cell
     {
     }
 
+    /**
+        random/null constructor 
+    */
     public CommonCell(bool random, double size, RootCell parent) : base(random, size, size, CellType.Common, parent)
     {
     }

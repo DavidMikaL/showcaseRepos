@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RootCell : Cell
+public class RootCell : Cell //Just functions as superclass currently unused
 {
     private Cell[,] cells;//!!! remove public
     public Cell[,] Cells {get{return cells;} set{cells = value;}}

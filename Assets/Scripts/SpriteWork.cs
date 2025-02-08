@@ -10,6 +10,9 @@ using UnityEngine.InputSystem.Interactions;
 public class SpriteWork
 {
     //public Sprite mySprite;
+    /**
+        Create Sprite from texture
+    */
     public static Sprite createBeetleSprite(BeetleInfo beetleInfo)
     {
         Texture2D tex = drawAllSpots(createSpotBug(beetleInfo));
@@ -21,6 +24,9 @@ public class SpriteWork
         //this.GetComponent<SpriteRenderer>().sprite = mySprite;
     }
     
+    /**
+        create Texture from list of Spots
+    */
     public static Texture2D drawAllSpots(ICollection<Spot> spots)
     {
         int maxX = 0;
@@ -59,6 +65,9 @@ public class SpriteWork
         return returnTexture;
     }
 
+    /**
+        Call recursive function for mainCoreCell 
+    */
     public static ICollection<Spot> createSpotBug(BeetleInfo beetleInfo)
     {
         CoreCell mainCore = beetleInfo.MainCoreCell;
@@ -67,6 +76,13 @@ public class SpriteWork
         return spots;
     }
 
+    /**
+        create List of spots for Cells under coreCell
+        recursively add Cells under rootcells as spots
+
+        Calculate positions on sprite from position in Structure
+        Color depends on type of Cell
+    */
     public static ICollection<Spot> createSpotCore(CoreCell currentCell, int currentX, int currentY, float currentAngle)
     {
         ICollection<Spot> spots = new List<Spot>
@@ -116,9 +132,16 @@ public class SpriteWork
         return spots;
     }
 
+    /**
+        create List of spots for Cells under extremityRootCell
+        recursively add Cells under rootcells as spots
+
+        Calculate positions on sprite from position in Structure
+        Color depends on type of Cell
+    */
     public static ICollection<Spot> createSpotExtremity(ExtremityRootCell currentCell, int currentX, int currentY, float currentAngle)
     {
-        Debug.Log("Also does");
+        //Debug.Log("Also does");
         ICollection<Spot> spots = new List<Spot>
         {
             new Spot(currentX, currentY, Color.magenta)

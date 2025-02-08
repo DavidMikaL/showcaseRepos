@@ -9,14 +9,21 @@ public class ExtremityRootCell : RootCell
         this.angle = angle;
     }
 
+    /**
+        random/null constructor 
+    */
     public ExtremityRootCell(bool random, double xSize, double ySize, RootCell parent) : base(random, xSize, ySize, CellType.ExtremityRoot, parent)
     {
         if(random)
         {
-            this.angle =  -15 + Random.Range(0,30);
+            this.angle =  -30 + Random.Range(0,60);
         }
     }
 
+    /**
+        Return a ERCell 
+        slightly different from the one executing the method 
+    */
     public ExtremityRootCell evolvedExtremityRoot(RootCell parent)
     {
         ExtremityRootCell extremityRootCell = new ExtremityRootCell(BeetleInfo.randomize(this.Hardness, 5),
@@ -26,7 +33,7 @@ public class ExtremityRootCell : RootCell
                                                                     parent);
         
 
-        int thickness = BeetleInfo.randomizeInt(Cells.GetLength(1), 1);
+        int thickness = Cells.GetLength(1);//BeetleInfo.randomizeInt(Cells.GetLength(1) + 1, 1);
 
         Cell[,] newCells = new Cell[3, thickness];
 
@@ -113,7 +120,7 @@ public class ExtremityRootCell : RootCell
         {
             if(i == Cells.GetLength(1))
             {
-                topheight = i - 1;
+                topheight = i;
 
                 if(Random.Range(0,99) == 1)
                 {

@@ -45,6 +45,9 @@ public class Cell
         this.parent = parent;
     }
 
+    /**
+        random/null constructor 
+    */
     public Cell(bool random, double xSize, double ySize, CellType cellType, RootCell parent)//random constructor
     {
         if(random)
@@ -59,6 +62,10 @@ public class Cell
         }
     }
 
+    /**
+        Copy constructor
+        unnecessary for now - not implemented in subclasses 
+    */
     public Cell(Cell cell)
     {
         this.hardness = cell.hardness;
@@ -70,44 +77,11 @@ public class Cell
         this.parent = cell.parent;
     }
 
+    /**
+        (To be reworked as basis for override)
+    */
     // public Cell evolveCell(RootCell parent,Cell cell, CellType cellType)// workout cells other than
     // {
-    //     //Cell cell = new Cell(this);//copy constructor
-    //     //take cell of given type - return similar cell of same type
-    //     switch(cellType)
-    //     {
-    //         case CellType.Common:
-    //             CommonCell coc = (CommonCell) cell;
-    //             return new CommonCell(BeetleInfo.randomize(coc.hardness, 5),
-    //                                 BeetleInfo.randomize(coc.xSize,3),
-    //                                 BeetleInfo.randomize(coc.maxHealth, 5),
-    //                                 parent);
-    //         case CellType.Core:
-    //             CoreCell cc = (CoreCell) cell;
-    //             return cc.evolvedCore(parent);
-    //         case CellType.ExtremityRoot:
-    //             ExtremityRootCell erc = (ExtremityRootCell) cell;
-    //             return erc.evolvedExtremityRoot(parent);
-    //         case CellType.Eye:
-    //             EyeCell ec = (EyeCell) cell;
-    //             return new EyeCell(BeetleInfo.randomize(ec.hardness, 5),
-    //                                 BeetleInfo.randomize(ec.xSize,3),
-    //                                 BeetleInfo.randomize(ec.maxHealth, 5),
-    //                                 BeetleInfo.randomize(ec.VisionDistance, 10),
-    //                                 BeetleInfo.randomize(ec.VisionAngle, 2),
-    //                                 parent);
-    //         case CellType.Horn:
-    //             HornCell hc = (HornCell) cell;
-    //             return new HornCell(BeetleInfo.randomize(hc.hardness, 5),
-    //                                 BeetleInfo.randomize(hc.xSize,3),
-    //                                 BeetleInfo.randomize(hc.maxHealth, 5),
-    //                                 parent);
-    //         default: //Celltype.Mouth
-    //             MouthCell mc = (MouthCell) cell;
-    //             return new MouthCell(BeetleInfo.randomize(mc.hardness, 5),
-    //                                 BeetleInfo.randomize(mc.xSize,3),
-    //                                 BeetleInfo.randomize(mc.maxHealth, 5),
-    //                                 parent);
-    //     }
+    //     
     // }
 }

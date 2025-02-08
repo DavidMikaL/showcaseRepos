@@ -1,7 +1,8 @@
+//using System;
 using System.Data;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.Mathematics;
 using UnityEngine;
-
 public class BeetleInfo
 {
     /** Stats (not status):
@@ -37,7 +38,7 @@ public class BeetleInfo
         (Delays)
     */
 
-    private bool alive = true;
+    //private bool alive = true;
     private int survivalTime;
 
 
@@ -50,6 +51,11 @@ public class BeetleInfo
         this.mainCoreCell = mainCoreCell;
     }
 
+    /**
+        Return a BeetleInfo 
+        slightly different from the one executing the method 
+        (dangerously recursive)
+    */
     public BeetleInfo evolvedBeetleInfo()//cant simply clone and evolve cause pointers would stay the same
     {
         CoreCell newmainCore = mainCoreCell.evolvedCore(null);
@@ -57,19 +63,29 @@ public class BeetleInfo
         return newBI;
     }
 
-    public static double randomize(double input, int range)//adjust to normal distribution
+    private static Unity.Mathematics.Random rand = new Unity.Mathematics.Random(1);
+    /**
+        maybe adjust random seed!
+
+        get random double around input 
+        values are more likely to be closer to input 
+        values stay within range in both directions
+    */  
+    public static double randomize(double input, double range, double lowCap = 1)//adjust to normal distribution
     {
-        double ret =  input - range/2 + Random.Range(0,range);
-        return ret < 1 ? 1 : ret;
+        double ret =  input + Mathf.Pow(-1,rand.NextInt(0,2)) * range * Mathf.Pow(rand.NextFloat(),5);
+        return ret < lowCap ? lowCap : ret;
+    }
+    /**
+        cast return of randomize(...) to Integer
+    */
+    public static int randomizeInt(int input, int range, int lowCap = 1)//adjust to normal distribution
+    {
+        int ret = (int)math.round(randomize(input,range, lowCap));
+        return ret < lowCap ? lowCap : ret;
     }
 
-    public static int randomizeInt(double input, int range)//adjust to normal distribution
-    {
-        int ret = (int)input - range/2 + Random.Range(0,range);
-        return ret < 1 ? 1 : ret;
-    }
-
-
+//old planning:
     // create hitbox structure
     // should some cells behave on their own? - no
     // create gameobject

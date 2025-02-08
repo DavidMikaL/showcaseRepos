@@ -17,6 +17,9 @@ public class Spot
         this.color = color;
     }
 
+    /**
+        Print spot information in Log
+    */
     public void printSpot()
     {
         Debug.Log("(x: " + x + " y: " + y + " c: " + color + ")");
