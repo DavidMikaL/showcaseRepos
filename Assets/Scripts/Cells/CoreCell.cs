@@ -23,7 +23,7 @@ public class CoreCell : RootCell
         Return a CoreCell 
         slightly different from the one executing the method 
     */    
-    public CoreCell evolvedCore(RootCell parent)
+    public override Cell evolvedCell(RootCell parent) 
     {
         CoreCell coreCell = new CoreCell(BeetleInfo.randomize(this.Hardness, 5),
                                         BeetleInfo.randomize(this.XSize,5),
@@ -77,47 +77,49 @@ public class CoreCell : RootCell
                     break;
                 }
 
-                switch(Cells[i,j].CellType)
-                {
-                    case CellType.Common:
-                        CommonCell coc = (CommonCell) Cells[i,j];
-                        newCells[i,j] =  new CommonCell(BeetleInfo.randomize(coc.Hardness, 5),
-                                            BeetleInfo.randomize(coc.XSize,3),
-                                            BeetleInfo.randomize(coc.MaxHealth, 5),
-                                            parent);
-                    break;
-                    case CellType.Core:
-                        CoreCell cc = (CoreCell) Cells[i,j];
-                        newCells[i,j] =  cc.evolvedCore(parent);
-                    break;
-                    case CellType.ExtremityRoot:
-                        ExtremityRootCell erc = (ExtremityRootCell) Cells[i,j];
-                        newCells[i,j] =  erc.evolvedExtremityRoot(parent);
-                    break;
-                    case CellType.Eye:
-                        EyeCell ec = (EyeCell) Cells[i,j];
-                        newCells[i,j] = new EyeCell(BeetleInfo.randomize(ec.Hardness, 5),
-                                            BeetleInfo.randomize(ec.XSize,3),
-                                            BeetleInfo.randomize(ec.MaxHealth, 5),
-                                            BeetleInfo.randomize(ec.VisionDistance, 10),
-                                            BeetleInfo.randomize(ec.VisionAngle, 2),
-                                            parent);
-                    break;
-                    case CellType.Horn:
-                        HornCell hc = (HornCell) Cells[i,j];
-                        newCells[i,j] =  new HornCell(BeetleInfo.randomize(hc.Hardness, 5),
-                                            BeetleInfo.randomize(hc.XSize,3),
-                                            BeetleInfo.randomize(hc.MaxHealth, 5),
-                                            parent);
-                    break;
-                    default: //Celltype.Mouth
-                        MouthCell mc = (MouthCell) Cells[i,j];
-                        newCells[i,j] =  new MouthCell(BeetleInfo.randomize(mc.Hardness, 5),
-                                            BeetleInfo.randomize(mc.XSize,3),
-                                            BeetleInfo.randomize(mc.MaxHealth, 5),
-                                            parent);
-                    break;
-                }
+                newCells[i,j] = Cells[i,j].evolvedCell(parent);
+
+                // switch(Cells[i,j].CellType)
+                // {
+                //     case CellType.Common:
+                //         CommonCell coc = (CommonCell) Cells[i,j];
+                //         newCells[i,j] =  new CommonCell(BeetleInfo.randomize(coc.Hardness, 5),
+                //                             BeetleInfo.randomize(coc.XSize,3),
+                //                             BeetleInfo.randomize(coc.MaxHealth, 5),
+                //                             parent);
+                //     break;
+                //     case CellType.Core:
+                //         CoreCell cc = (CoreCell) Cells[i,j];
+                //         newCells[i,j] =  cc.evolvedCore(parent);
+                //     break;
+                //     case CellType.ExtremityRoot:
+                //         ExtremityRootCell erc = (ExtremityRootCell) Cells[i,j];
+                //         newCells[i,j] =  erc.evolvedExtremityRoot(parent);
+                //     break;
+                //     case CellType.Eye:
+                //         EyeCell ec = (EyeCell) Cells[i,j];
+                //         newCells[i,j] = new EyeCell(BeetleInfo.randomize(ec.Hardness, 5),
+                //                             BeetleInfo.randomize(ec.XSize,3),
+                //                             BeetleInfo.randomize(ec.MaxHealth, 5),
+                //                             BeetleInfo.randomize(ec.VisionDistance, 10),
+                //                             BeetleInfo.randomize(ec.VisionAngle, 2),
+                //                             parent);
+                //     break;
+                //     case CellType.Horn:
+                //         HornCell hc = (HornCell) Cells[i,j];
+                //         newCells[i,j] =  new HornCell(BeetleInfo.randomize(hc.Hardness, 5),
+                //                             BeetleInfo.randomize(hc.XSize,3),
+                //                             BeetleInfo.randomize(hc.MaxHealth, 5),
+                //                             parent);
+                //     break;
+                //     default: //Celltype.Mouth
+                //         MouthCell mc = (MouthCell) Cells[i,j];
+                //         newCells[i,j] =  new MouthCell(BeetleInfo.randomize(mc.Hardness, 5),
+                //                             BeetleInfo.randomize(mc.XSize,3),
+                //                             BeetleInfo.randomize(mc.MaxHealth, 5),
+                //                             parent);
+                //     break;
+                // }
             }
         }
 

@@ -14,4 +14,12 @@ public class MouthCell : Cell
     public MouthCell(bool random, double size, RootCell parent) : base(random, size, size, CellType.Mouth, parent)
     {
     }
+
+    public override Cell evolvedCell(RootCell parent)
+    {
+        return new MouthCell (BeetleInfo.randomize(Hardness, 5),
+                             BeetleInfo.randomize(XSize,3),
+                             BeetleInfo.randomize(MaxHealth, 5),
+                             parent);
+    }
 }

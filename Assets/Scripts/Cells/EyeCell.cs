@@ -22,4 +22,14 @@ public class EyeCell : Cell
         this.visionDistance = Random.Range(1,300);
         this.visionAngle = Random.Range(10,90);
     }
+
+    public override Cell evolvedCell(RootCell parent)
+    {
+        return new EyeCell(BeetleInfo.randomize(Hardness, 5),
+                           BeetleInfo.randomize(XSize,3),
+                           BeetleInfo.randomize(MaxHealth, 5),
+                           BeetleInfo.randomize(VisionDistance, 10),
+                           BeetleInfo.randomize(VisionAngle, 2),
+                           parent);
+    }
 }

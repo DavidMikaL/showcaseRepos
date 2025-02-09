@@ -58,14 +58,14 @@ public class BeetleInfo
     */
     public BeetleInfo evolvedBeetleInfo()//cant simply clone and evolve cause pointers would stay the same
     {
-        CoreCell newmainCore = mainCoreCell.evolvedCore(null);
+        CoreCell newmainCore = (CoreCell)mainCoreCell.evolvedCell(null);
         BeetleInfo newBI = new BeetleInfo(randomize(reprodAmount,1), randomize(reprodAmount,5), randomize(regenSpeed, 10), generation + 1, newmainCore);
         return newBI;
     }
 
     private static Unity.Mathematics.Random rand = new Unity.Mathematics.Random(1);
     /**
-        maybe adjust random seed!
+        maybe adjust random seed
 
         get random double around input 
         values are more likely to be closer to input 

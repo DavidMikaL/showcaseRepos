@@ -24,7 +24,7 @@ public class ExtremityRootCell : RootCell
         Return a ERCell 
         slightly different from the one executing the method 
     */
-    public ExtremityRootCell evolvedExtremityRoot(RootCell parent)
+    public override Cell evolvedCell(RootCell parent)
     {
         ExtremityRootCell extremityRootCell = new ExtremityRootCell(BeetleInfo.randomize(this.Hardness, 5),
                                                                     BeetleInfo.randomize(this.XSize,5),
@@ -71,49 +71,7 @@ public class ExtremityRootCell : RootCell
                     break;
                 }
 
-                //newCells[i,j] = Cells[i,j].evolveCell(parent,new Cell(Cells[i,j]), Cells[i,j].CellType);
-
-                switch(Cells[i,j].CellType)
-                {
-                    case CellType.Common:
-                        CommonCell coc = (CommonCell) Cells[i,j];
-                        newCells[i,j] =  new CommonCell(BeetleInfo.randomize(coc.Hardness, 5),
-                                            BeetleInfo.randomize(coc.XSize,3),
-                                            BeetleInfo.randomize(coc.MaxHealth, 5),
-                                            parent);
-                    break;
-                    case CellType.Core:
-                        CoreCell cc = (CoreCell) Cells[i,j];
-                        newCells[i,j] =  cc.evolvedCore(parent);
-                    break;
-                    case CellType.ExtremityRoot:
-                        ExtremityRootCell erc = (ExtremityRootCell) Cells[i,j];
-                        newCells[i,j] =  erc.evolvedExtremityRoot(parent);
-                    break;
-                    case CellType.Eye:
-                        EyeCell ec = (EyeCell) Cells[i,j];
-                        newCells[i,j] = new EyeCell(BeetleInfo.randomize(ec.Hardness, 5),
-                                            BeetleInfo.randomize(ec.XSize,3),
-                                            BeetleInfo.randomize(ec.MaxHealth, 5),
-                                            BeetleInfo.randomize(ec.VisionDistance, 10),
-                                            BeetleInfo.randomize(ec.VisionAngle, 2),
-                                            parent);
-                    break;
-                    case CellType.Horn:
-                        HornCell hc = (HornCell) Cells[i,j];
-                        newCells[i,j] =  new HornCell(BeetleInfo.randomize(hc.Hardness, 5),
-                                            BeetleInfo.randomize(hc.XSize,3),
-                                            BeetleInfo.randomize(hc.MaxHealth, 5),
-                                            parent);
-                    break;
-                    default: //Celltype.Mouth
-                        MouthCell mc = (MouthCell) Cells[i,j];
-                        newCells[i,j] =  new MouthCell(BeetleInfo.randomize(mc.Hardness, 5),
-                                            BeetleInfo.randomize(mc.XSize,3),
-                                            BeetleInfo.randomize(mc.MaxHealth, 5),
-                                            parent);
-                    break;
-                }
+                newCells[i,j] = Cells[i,j].evolvedCell(parent);
             }
         }
         for(int i = 0; i < thickness; i++)
@@ -144,50 +102,8 @@ public class ExtremityRootCell : RootCell
                     }
                     break;
                 }
-            //newCells[2,i] = Cells[2,i].evolveCell(parent,new Cell(Cells[2,i]), Cells[2,i].CellType);
-
-
-            switch(Cells[2,i].CellType)
-                {
-                    case CellType.Common:
-                        CommonCell coc = (CommonCell) Cells[2,i];
-                        newCells[2,i] =  new CommonCell(BeetleInfo.randomize(coc.Hardness, 5),
-                                            BeetleInfo.randomize(coc.XSize,3),
-                                            BeetleInfo.randomize(coc.MaxHealth, 5),
-                                            parent);
-                    break;
-                    case CellType.Core:
-                        CoreCell cc = (CoreCell) Cells[2,i];
-                        newCells[2,i] =  cc.evolvedCore(parent);
-                    break;
-                    case CellType.ExtremityRoot:
-                        ExtremityRootCell erc = (ExtremityRootCell) Cells[2,i];
-                        newCells[2,i] =  erc.evolvedExtremityRoot(parent);
-                    break;
-                    case CellType.Eye:
-                        EyeCell ec = (EyeCell) Cells[2,i];
-                        newCells[2,i] = new EyeCell(BeetleInfo.randomize(ec.Hardness, 5),
-                                            BeetleInfo.randomize(ec.XSize,3),
-                                            BeetleInfo.randomize(ec.MaxHealth, 5),
-                                            BeetleInfo.randomize(ec.VisionDistance, 10),
-                                            BeetleInfo.randomize(ec.VisionAngle, 2),
-                                            parent);
-                    break;
-                    case CellType.Horn:
-                        HornCell hc = (HornCell) Cells[2,i];
-                        newCells[2,i] =  new HornCell(BeetleInfo.randomize(hc.Hardness, 5),
-                                            BeetleInfo.randomize(hc.XSize,3),
-                                            BeetleInfo.randomize(hc.MaxHealth, 5),
-                                            parent);
-                    break;
-                    default: //Celltype.Mouth
-                        MouthCell mc = (MouthCell) Cells[2,i];
-                        newCells[2,i] =  new MouthCell(BeetleInfo.randomize(mc.Hardness, 5),
-                                            BeetleInfo.randomize(mc.XSize,3),
-                                            BeetleInfo.randomize(mc.MaxHealth, 5),
-                                            parent);
-                    break;
-                }
+            
+            newCells[2,i] = Cells[2,i].evolvedCell(parent);
         }
 
         extremityRootCell.Cells =  newCells;// not call by reference for better readability clone is not necessary rn

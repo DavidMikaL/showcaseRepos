@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.IK;
 
-public class Cell
+public abstract class Cell
 {   
     /** Stats (not status):
         hardness
@@ -84,4 +84,6 @@ public class Cell
     // {
     //     
     // }
+
+    public abstract Cell evolvedCell(RootCell parent);
 }

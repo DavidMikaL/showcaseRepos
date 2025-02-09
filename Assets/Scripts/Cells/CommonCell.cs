@@ -13,4 +13,12 @@ public class CommonCell : Cell
     public CommonCell(bool random, double size, RootCell parent) : base(random, size, size, CellType.Common, parent)
     {
     }
+
+    public override Cell evolvedCell(RootCell parent)
+    {
+        return new CommonCell(BeetleInfo.randomize(Hardness, 5),
+                              BeetleInfo.randomize(XSize,3),
+                              BeetleInfo.randomize(MaxHealth, 5),
+                              parent);
+    }
 }
